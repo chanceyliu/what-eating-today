@@ -132,7 +132,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      title: '基础模板',
+      title: '今天吃什么',
       template: templatePath,
       favicon: faviconPath,
     }),
