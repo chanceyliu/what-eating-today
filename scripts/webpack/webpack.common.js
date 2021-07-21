@@ -4,11 +4,13 @@ const WebpackBar = require('webpackbar')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
 const { srcDir, isDev, entryPath, buildPath, templatePath, faviconPath } = require('../constants')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
 
 // 针对不同的样式文件引用不同的loader，因为大部分相同，所以抽成公共方法
 function getCssLoader(lang) {
   const loaders = [
-    'style-loader',
+    isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
     {
       loader: require.resolve('@opd/css-modules-typings-loader'),
     },
@@ -109,7 +111,7 @@ module.exports = {
             options: {
               limit: 10 * 1024,
               name: '[name].[hash:8].[ext]',
-              outputPath: 'assets/images',
+              outputPath: 'assets/fonts',
             },
           },
         ],
@@ -123,7 +125,7 @@ module.exports = {
               // 当文件小于10kb的时候采用url-loader将图片打包成base64的格式（否则就用file-loader）
               limit: 10 * 1024,
               name: '[name].[hash:8].[ext]',
-              outputPath: 'assets/fonts',
+              outputPath: 'assets/images',
             },
           },
         ],
@@ -147,7 +149,14 @@ module.exports = {
         files: './src/**/*.{ts,tsx,js,jsx}',
       },
     }),
+    new MiniCssExtractPlugin({
+      filename: 'css/[name].[contenthash].css',
+    }),
   ],
+  optimization: {
+    minimize: !isDev,
+    minimizer: [new CssMinimizerPlugin()],
+  },
   resolve: {
     // 路径别名
     alias: {
