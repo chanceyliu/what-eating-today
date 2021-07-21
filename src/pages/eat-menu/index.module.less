@@ -2,12 +2,25 @@
 
 .page {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
 
-  .disc {
-    width: @disc-radius;
-    height: @disc-radius;
-    background-color: antiquewhite;
-    border-radius: 50%;
+  .lottery {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate3d(-50%, -50%, 0);
+    &-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      .disc {
+        width: @disc-radius;
+        height: @disc-radius;
+        background-color: antiquewhite;
+        border-radius: 50%;
+      }
+    }
   }
 }
