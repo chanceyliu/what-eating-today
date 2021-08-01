@@ -3,12 +3,14 @@
 .page {
   display: flex;
   flex-direction: row;
+  overflow: hidden;
 
   .lottery {
     position: absolute;
     left: 50%;
     top: 50%;
     transform: translate3d(-50%, -50%, 0);
+    z-index: 999;
     &-content {
       display: flex;
       flex-direction: column;
@@ -20,6 +22,8 @@
         height: @disc-radius;
         background-color: antiquewhite;
         border-radius: 50%;
+        display: flex;
+        justify-content: center;
       }
     }
   }

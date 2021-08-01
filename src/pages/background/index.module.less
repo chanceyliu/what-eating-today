@@ -1,0 +1,29 @@
+.columns {
+  animation: loop 10s linear infinite normal;
+}
+
+@keyframes loop {
+  0% {
+    transform: translate(0, 0);
+  }
+
+  20% {
+    transform: translate(0, -20%);
+  } /* 切换500ms 位移-20% */
+
+  40% {
+    transform: translate(0, -40%);
+  }
+
+  60% {
+    transform: translate(0, -60%);
+  }
+
+  80% {
+    transform: translate(0, -80%);
+  }
+
+  100% {
+    transform: translate(0, -100%);
+  } /* 复位到第一张图片 */
+}
