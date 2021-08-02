@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>无限轮播文字</title>
+
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+
+      #wrap {
+        overflow: hidden;
+        position: relative;
+        width: 600px;
+        height: 20px;
+        padding-bottom: 5px;
+        border-bottom: 1px solid #cccccc;
+        white-space: nowrap;
+      }
+
+      #slide {
+        position: absolute;
+        border: 1px solid;
+        animation: slide 5s linear infinite;
+      }
+
+      @keyframes slide {
+        0% {
+          transform: translateX(0);
+        }
+        100% {
+          transform: translateX(-50%);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="wrap">
+      <div id="slide">
+        <span
+          >故事的小黄花 从出生那年就飘着 童年的荡秋千 随记忆一直晃到现在 Re So So Si Do Si La So La
+          Si Si Si Si La Si La So</span
+        >
+        <span
+          >故事的小黄花 从出生那年就飘着 童年的荡秋千 随记忆一直晃到现在 Re So So Si Do Si La So La
+          Si Si Si Si La Si La So</span
+        >
+      </div>
+    </div>
+  </body>
+</html>

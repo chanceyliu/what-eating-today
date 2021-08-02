@@ -22,7 +22,7 @@ const Index: FC = () => {
   }, [])
 
   const iconNumber = useMemo(() => {
-    return Math.ceil(window.innerHeight / (iconSize + 10))
+    return Math.floor(window.innerHeight / (iconSize + 10))
   }, [iconSize])
 
   return (
@@ -30,7 +30,7 @@ const Index: FC = () => {
       {new Array(BG_COLUMN).fill('').map((_, parentIndex) => (
         <div
           key={parentIndex}
-          className={styles.columns}
+          // className={styles.columns}
           style={{
             width: `${100 / BG_COLUMN}%`,
             height: '100vh',
@@ -38,20 +38,25 @@ const Index: FC = () => {
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
+            position: 'relative',
           }}
         >
-          {new Array(iconNumber + 3).fill('').map((_, childIndex) => (
-            <img
-              key={childIndex}
-              width={iconSize}
-              src={
-                iconList[
-                  parentIndex >= iconList.length ? parentIndex % iconList.length : parentIndex
-                ]
-              }
-              style={{ padding: '5px 0 5px 0' }}
-            />
-          ))}
+          {/* 因为我们只需要内部元素滚动，而不是带背景颜色的div滚动，所以外层加一个div */}
+          {/* 参考：https://juejin.cn/post/6941242335443288077 */}
+          <div className={styles.columns}>
+            {new Array(iconNumber + 1).fill('').map((_, childIndex) => (
+              <img
+                key={childIndex}
+                width={iconSize}
+                src={
+                  iconList[
+                    parentIndex >= iconList.length ? parentIndex % iconList.length : parentIndex
+                  ]
+                }
+                style={{ padding: '5px 0 5px 0' }}
+              />
+            ))}
+          </div>
         </div>
       ))}
     </>
